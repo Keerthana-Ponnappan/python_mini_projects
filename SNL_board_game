@@ -1,0 +1,301 @@
+import turtle,random
+turtle.speed(1000)
+turtle.bgcolor("skyblue")
+turtle.setup(700, 700)
+turtle.hideturtle()
+player1 = turtle.Turtle()
+player2 = turtle.Turtle()
+player1.hideturtle()
+player2.hideturtle()
+
+x = 0
+y = 0
+a = 0
+
+p1_at=p2_at=0
+
+
+
+
+def welocme():
+    turtle.penup()
+    turtle.color('deep pink')
+    turtle.goto(-200,100)
+    turtle.pendown()
+    turtle.write("WELCOME TO \n   SANKES \n      AND\n   LADDERS",  font=("Comic Sans MS", 30, "normal"), align='center')
+    turtle.penup()
+    turtle.goto(-200,70)
+    turtle.pendown()
+    turtle.write(" Life is like snake and ladder",  font=("Comic Sans MS", 15, "normal"), align='center')
+    turtle.penup()
+    turtle.goto(-200,0)
+    turtle.pendown()
+    turtle.write(" ** if you are lucky , \n you will climb the stairs \nand head up to the top ",  font=("Comic Sans MS", 10, "normal"), align='center')
+    turtle.penup()
+    turtle.goto(-200,-50)
+    turtle.pendown()
+    turtle.write(" ** if you are unlucky, \n you will go down \n through a snake ",  font=("Comic Sans MS", 10, "normal"), align='center')
+    turtle.penup()
+    turtle.goto(-100,-170)
+    turtle.pendown()
+    turtle.write(" \t No matter what ,keep playing until the \n \t \t\tFINISH LINE  : )",  font=("Comic Sans MS", 20, "normal"), align='center')
+
+
+
+def box(ln):
+    global x,y,a
+    turtle.goto(x,y)
+    for i in range(10):
+        turtle.penup()
+        turtle.goto(x,y)
+        turtle.pendown()
+        for j in range(4):
+            turtle.forward(ln)
+            turtle.left(90)
+        turtle.goto(x+10,y)
+        
+        turtle.write(a+1, align='center')
+        a+=1
+        if (a//10)%2 == 0 :
+            x += 30
+        else:
+            x -= 30
+        
+            
+    
+def turnright(n):
+    print("rrrr")
+    n.right(90)
+    n.forward(30)
+    n.right(90)
+    n.forward(30)
+def turnleft(n):
+    n.left(90)
+    n.forward(30)
+    n.left(90)
+    n.forward(30)
+
+
+
+
+
+
+
+
+welocme()
+
+
+
+    
+# To change the ponter position
+turtle.color("black")
+while (300>y):
+    turtle.penup()
+    turtle.goto(x,y)
+    turtle.pendown()
+    box(30)
+    
+    if (a//10)%2 == 0 :
+        x=0
+    else:
+        x = 30*9
+    y += 30
+
+
+
+
+#border for the game board
+
+turtle.penup()
+turtle.goto(0,0)
+turtle.pendown()
+for j in range(4):
+    turtle.pensize(4)
+    turtle.color("black")
+    turtle.forward(300)
+    turtle.left(90)
+
+
+
+
+# for fall
+
+
+turtle.pensize(3)
+turtle.color("red")
+#  1st fall    
+turtle.penup()
+turtle.goto(75,285)
+turtle.pendown()
+turtle.goto(225,45)
+
+#  2nd fall    
+turtle.penup()
+turtle.goto(225,165)
+turtle.pendown()
+turtle.goto(255,285)
+
+#  3rd fall    
+turtle.penup()
+turtle.goto(45,195)
+turtle.pendown()
+turtle.goto(105,135)
+
+#  4th fall    
+turtle.penup()
+turtle.goto(285,195)
+turtle.pendown()
+turtle.goto(255,75)
+
+#  5th fall    
+turtle.penup()
+turtle.goto(135,165)
+turtle.pendown()
+turtle.goto(165,45)
+
+
+
+
+
+
+# for ladder
+
+
+turtle.pensize(3)
+turtle.color("green")
+#  1st ladder    
+
+turtle.penup()
+turtle.goto(225,15)
+turtle.pendown()
+turtle.goto(165,75)
+
+#  2nd ladder    
+turtle.penup()
+turtle.goto(105,75)
+turtle.pendown()
+turtle.goto(225,195)
+
+#  3rd ladder    
+turtle.penup()
+turtle.goto(45,105)
+turtle.pendown()
+turtle.goto(165,165)
+
+#  4th ladder    
+turtle.penup()
+turtle.goto(285,135)
+turtle.pendown()
+turtle.goto(225,255)
+
+#  5th ladder    
+turtle.penup()
+turtle.goto(15,225)
+turtle.pendown()
+turtle.goto(45,285)
+
+
+def main(a,b,p_at,n):
+        at = p_at
+        n.penup()
+        n.showturtle()
+        n.goto(a,b)
+        ch=input("enter 'r' to roll the die:")
+        if ch != 'r':
+            ch=input("enter 'r' to roll the die:")
+        if ch == 'r':
+            d_value = random.randint(1,6)
+            print("ur die value :",d_value)
+
+            if at + d_value <=100:
+                for i in range(d_value):
+                    n.speed(5)
+                    
+                    if at//10!=0 and (at%10)== 0:
+                        if ((at//10)%2) == 0:
+                            turnright(n)
+                            
+                        elif ((at//10)%2) == 1:
+                            turnleft(n)
+                    else :
+                         n.forward(30)
+                    at+=1
+
+            
+            # for hike(ladder)                
+            if at == 8:
+                n.goto(180,75)
+                at = 26
+            elif at == 24:
+                n.goto(240,195)
+                at = 68
+            elif at == 39:
+                n.goto(150,165)
+                at = 55
+            elif at == 50:
+                n.goto(240,255)
+                at = 88
+            elif at == 80:
+                n.goto(30,285)
+                at = 99
+
+
+            # for fall(snake)
+
+            if at == 56:
+                n.goto(150,45)
+                at = 15
+            elif at == 70:
+                n.goto(270,75)
+                at = 29
+            elif at == 62:
+                n.goto(120,135)
+                at = 44
+            elif at == 92:
+                n.goto(210,165)
+                at = 53
+            elif at == 98:
+                n.goto(210,45)
+                at = 13  
+
+
+
+        a,b = n.pos()       
+        if at == 100:
+            print("\nwhoo hoo , wow u won the game  : )\n")
+            return a,b,at
+            
+        else:
+            return a,b,at
+
+
+
+
+    
+   
+a=0
+b=15
+
+c=0
+d=10
+
+i =1
+while p1_at != 100  and p2_at != 100:
+
+        if i%2 == 1:
+            print("PLAYER 1 ",end=' ')
+            player1.color("blue")
+            player1.hideturtle()
+            a,b,p1_at=main(a,b,p1_at,player1)
+            print("PLAYER 1  blue ur at",p1_at,"\n\n")
+            i+=1
+        else:
+            print("PLAYER 2 ",end=' ')
+            player2.color("indigo")
+            player2.hideturtle()
+            c,d,p2_at=main(c,d,p2_at,player2)
+            print("PLAYER 2  indigo ur at",p2_at,"\n\n")
+            i+=1
+    
+print("thanks for playing !!!!")
+
